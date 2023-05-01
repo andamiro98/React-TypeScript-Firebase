@@ -10,12 +10,14 @@ import Navigation from 'components/Navigation';
 const Router = ({ isLoggedIn }) => {
   return (
     <BrowserRouter>
+      {isLoggedIn && <Navigation />}
       <Routes>
         {isLoggedIn ? (
           <Route path="/" element={<Home />} />
         ) : (
           <Route path="/" element={<Auth />} />
         )}
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
