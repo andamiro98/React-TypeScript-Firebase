@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { dbService } from 'fbase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Home = () => {
   const [post, setPost] = useState('');
 
-  const onsubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(post);
+    await addDoc(collection(dbService, 'chuweets'), {
+      post,
+      createdAt: serverTimestamp(),
+    });
+    setPost('');
   };
 
   const onchange = (e) => {
@@ -12,7 +20,7 @@ const Home = () => {
   };
 
   return (
-    <form onsubmit={onsubmit}>
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         value={post}
