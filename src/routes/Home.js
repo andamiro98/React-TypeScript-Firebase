@@ -21,7 +21,7 @@ const Home = () => {
         ...doc.data(),
         id: doc.id,
       };
-      console.log(ChuweetObj);
+
       setChuweets((prev) => [ChuweetObj, ...prev]);
     });
   };
@@ -43,18 +43,28 @@ const Home = () => {
   const onchange = (e) => {
     setPost(e.target.value);
   };
+  console.log(chuweets);
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        value={post}
-        onChange={onchange}
-        placeholder="추억의 녀석들"
-        maxLength={200}
-      />
-      <input type="submit" value="완료" />
-    </form>
+    <div>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          value={post}
+          onChange={onchange}
+          placeholder="추억의 녀석들"
+          maxLength={200}
+        />
+        <input type="submit" value="완료" />
+      </form>
+      <div>
+        {chuweets.map((chuweet) => (
+          <div key={chuweet.id}>
+            <h4>{chuweet.post}</h4>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
