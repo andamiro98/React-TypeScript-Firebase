@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { dbService } from 'fbase';
+import { dbService } from '../fbase';
 import {
   collection,
   addDoc,
@@ -8,7 +8,7 @@ import {
   orderBy,
   onSnapshot,
 } from 'firebase/firestore';
-import Chuweet from 'components/Chuweet';
+import Chuweet from '../components/Chuweet';
 
 //Props
 // userObj : App.js => Router.js => Home.js
@@ -61,6 +61,15 @@ const Home = ({ userObj }) => {
   };
   console.log(chuweets);
 
+  const onFileChange = (e) => {
+    console.log(e.target.files[0]);
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      console.log(finishedEvent);
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -71,6 +80,7 @@ const Home = ({ userObj }) => {
           placeholder="추억의 녀석들"
           maxLength={200}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="완료" />
       </form>
       <div>

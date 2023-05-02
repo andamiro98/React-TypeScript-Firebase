@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { dbService } from 'fbase';
+import { dbService } from '../fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+
+// interface ChuweetObj {
+//   createdAt: {
+//     seconds: number;
+//     nanoseconds: number;
+//   };
+//   creatorID: string;
+//   postid: string;
+//   text: string;
+// }
 
 // Props
 // chuweetObj : <Home> of chuweets

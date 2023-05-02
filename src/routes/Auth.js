@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { authService } from 'fbase';
+import { authService } from '../fbase';
 
 const Auth = () => {
   const [email, setEmail] = useState('');

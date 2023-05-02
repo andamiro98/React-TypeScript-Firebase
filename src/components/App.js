@@ -1,6 +1,6 @@
-import Router from 'components/Router';
+import Router from './Router';
 import React, { useEffect, useState } from 'react';
-import { authService } from 'fbase';
+import { authService } from '../fbase';
 
 function App() {
   //console.log(authService.currentUser); // user | null
@@ -31,7 +31,7 @@ function App() {
         'Initializeing...'
       )}
 
-      <footer>&copy; {new Date().getFullYear()} Old-boys</footer>
+      {/* <footer>&copy; {new Date().getFullYear()} Old-boys</footer> */}
     </>
   );
 }
