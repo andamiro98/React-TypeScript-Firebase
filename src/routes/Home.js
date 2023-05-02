@@ -10,6 +10,8 @@ import {
 } from 'firebase/firestore';
 import Chuweet from 'components/Chuweet';
 
+//Props
+// userObj : App.js => Router.js => Home.js
 const Home = ({ userObj }) => {
   console.log(userObj);
   const [post, setPost] = useState('');
@@ -46,7 +48,6 @@ const Home = ({ userObj }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(post);
     await addDoc(collection(dbService, 'chuweets'), {
       text: post,
       createdAt: serverTimestamp(),

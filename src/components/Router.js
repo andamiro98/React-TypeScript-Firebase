@@ -7,6 +7,8 @@ import EditProfile from '../routes/EditProfile';
 import Profile from '../routes/Profile';
 import Navigation from 'components/Navigation';
 
+// Props
+// isLoggedIn, userObj : App.js
 const Router = ({ isLoggedIn, userObj }) => {
   return (
     <BrowserRouter>
