@@ -7,13 +7,13 @@ import EditProfile from '../routes/EditProfile';
 import Profile from '../routes/Profile';
 import Navigation from 'components/Navigation';
 
-const Router = ({ isLoggedIn }) => {
+const Router = ({ isLoggedIn, userObj }) => {
   return (
     <BrowserRouter>
       {isLoggedIn && <Navigation />}
       <Routes>
         {isLoggedIn ? (
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home userObj={userObj} />} />
         ) : (
           <Route path="/" element={<Auth />} />
         )}

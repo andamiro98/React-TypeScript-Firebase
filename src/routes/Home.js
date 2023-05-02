@@ -8,7 +8,8 @@ import {
   query,
 } from 'firebase/firestore';
 
-const Home = () => {
+const Home = ({ userObj }) => {
+  console.log(userObj);
   const [post, setPost] = useState('');
   const [chuweets, setChuweets] = useState([]);
 
@@ -21,7 +22,6 @@ const Home = () => {
         ...doc.data(),
         id: doc.id,
       };
-
       setChuweets((prev) => [ChuweetObj, ...prev]);
     });
   };
@@ -34,8 +34,9 @@ const Home = () => {
     e.preventDefault();
     console.log(post);
     await addDoc(collection(dbService, 'chuweets'), {
-      post,
+      text: post,
       createdAt: serverTimestamp(),
+      userID: userObj.uid,
     });
     setPost('');
   };
