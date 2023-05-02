@@ -9,7 +9,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [userObj, setUserObj] = useState(null);
-
+  console.log('>>>>', userObj);
   useEffect(() => {
     // onAuthStateChanged Method : 사용자의 로그인 상태의 관리 변화를 관찰하는 메서드
     authService.onAuthStateChanged((user) => {

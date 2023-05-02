@@ -4,11 +4,11 @@ import {
   collection,
   addDoc,
   serverTimestamp,
-  getDocs,
   query,
   orderBy,
   onSnapshot,
 } from 'firebase/firestore';
+import Chuweet from 'components/Chuweet';
 
 const Home = ({ userObj }) => {
   console.log(userObj);
@@ -50,7 +50,7 @@ const Home = ({ userObj }) => {
     await addDoc(collection(dbService, 'chuweets'), {
       text: post,
       createdAt: serverTimestamp(),
-      userID: userObj.uid,
+      creatorID: userObj.uid,
     });
     setPost('');
   };
@@ -74,9 +74,11 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {chuweets.map((chuweet) => (
-          <div key={chuweet.postid}>
-            <h4>{chuweet.text}</h4>
-          </div>
+          <Chuweet
+            key={chuweet.postid}
+            chuweetObj={chuweet}
+            isOwner={chuweet.creatorID === userObj.uid}
+          />
         ))}
       </div>
     </div>
