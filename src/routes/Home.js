@@ -16,7 +16,7 @@ const Home = ({ userObj }) => {
   console.log(userObj);
   const [post, setPost] = useState('');
   const [chuweets, setChuweets] = useState([]);
-
+  const [attachment, setAttachment] = useState();
   // const getChuweets = async () => {
   //   const q = query(collection(dbService, 'chuweets'));
   //   const querySnapshot = await getDocs(q);
@@ -66,8 +66,13 @@ const Home = ({ userObj }) => {
     const reader = new FileReader();
     reader.onloadend = (finishedEvent) => {
       console.log(finishedEvent);
+      setAttachment(finishedEvent.currentTarget.result);
     };
     reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const onCleraAttachment = () => {
+    setAttachment(null);
   };
 
   return (
@@ -82,6 +87,12 @@ const Home = ({ userObj }) => {
         />
         <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="완료" />
+        {attachment && (
+          <div>
+            <img src={attachment} width="50px" height="50px" />
+            <button onClick={onCleraAttachment}>취소</button>
+          </div>
+        )}
       </form>
       <div>
         {chuweets.map((chuweet) => (
