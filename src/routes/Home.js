@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { dbService } from '../fbase';
 import {
   collection,
@@ -17,6 +17,8 @@ const Home = ({ userObj }) => {
   const [post, setPost] = useState('');
   const [chuweets, setChuweets] = useState([]);
   const [attachment, setAttachment] = useState();
+
+  const fileInput = useRef();
   // const getChuweets = async () => {
   //   const q = query(collection(dbService, 'chuweets'));
   //   const querySnapshot = await getDocs(q);
@@ -73,6 +75,7 @@ const Home = ({ userObj }) => {
 
   const onCleraAttachment = () => {
     setAttachment(null);
+    fileInput.current.value = '';
   };
 
   return (
@@ -85,7 +88,12 @@ const Home = ({ userObj }) => {
           placeholder="추억의 녀석들"
           maxLength={200}
         />
-        <input type="file" accept="image/*" onChange={onFileChange} />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          ref={fileInput}
+        />
         <input type="submit" value="완료" />
         {attachment && (
           <div>
