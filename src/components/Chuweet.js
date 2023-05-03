@@ -19,14 +19,15 @@ import { ref, deleteObject } from 'firebase/storage';
 const Chuweet = ({ chuweetObj, isOwner }) => {
   const [update, setUpdate] = useState(false);
   const [updatePost, setUpdatePost] = useState(chuweetObj.text);
-  console.log(chuweetObj);
+  console.log(chuweetObj.text);
   const ChuweetTextRef = doc(dbService, 'chuweets', `${chuweetObj.postid}`);
 
   const onDeleteClick = async () => {
     const reCheck = window.confirm('삭제하시겠습니까?');
     if (reCheck) {
-      //delect
       await deleteDoc(ChuweetTextRef);
+      // 삭제하려는 이미지 파일 가리키는 ref
+      // chuweetObj attachmentUrl이 바로 삭제하려는 그 url임
       await deleteObject(ref(storageService, chuweetObj.attachmentUrl));
     }
   };

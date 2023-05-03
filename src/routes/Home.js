@@ -76,7 +76,7 @@ const Home = ({ userObj }) => {
     };
     //트윗하기 누르면 chuweetObj 형태로 새로운 document 생성하여 chuweets 콜렉션에 넣기
     await addDoc(collection(dbService, 'chuweets'), chuweetObj);
-
+    fileInput.current.value = '';
     setPost('');
     setAttachment('');
   };
