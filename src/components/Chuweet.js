@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { dbService } from '../fbase';
+import { dbService, storageService } from '../fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
 
 // interface ChuweetObj {
 //   createdAt: {
@@ -26,6 +27,7 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
     if (reCheck) {
       //delect
       await deleteDoc(ChuweetTextRef);
+      await deleteObject(ref(storageService, chuweetObj.attachmentUrl));
     }
   };
 

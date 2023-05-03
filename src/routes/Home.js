@@ -68,16 +68,15 @@ const Home = ({ userObj }) => {
       attachmentUrl = await getDownloadURL(response.ref);
       console.log(attachmentUrl);
     }
-
     const chuweetObj = {
       text: post,
       createdAt: serverTimestamp(),
       creatorID: userObj.uid,
       attachmentUrl,
     };
-
     //트윗하기 누르면 chuweetObj 형태로 새로운 document 생성하여 chuweets 콜렉션에 넣기
     await addDoc(collection(dbService, 'chuweets'), chuweetObj);
+
     setPost('');
     setAttachment('');
   };
