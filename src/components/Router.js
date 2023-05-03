@@ -11,7 +11,7 @@ import Navigation from './Navigation';
 const Router = ({ isLoggedIn, userObj }) => {
   return (
     <BrowserRouter>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
           <Route path="/" element={<Home userObj={userObj} />} />
