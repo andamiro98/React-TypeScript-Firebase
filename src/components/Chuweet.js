@@ -64,6 +64,9 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{chuweetObj.text}</h4>
+          {chuweetObj.attachmentUrl && (
+            <img src={chuweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>삭제하기</button>
