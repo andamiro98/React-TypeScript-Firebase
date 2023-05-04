@@ -8,7 +8,7 @@ import Navigation from './Navigation';
 
 // Props
 // isLoggedIn, userObj : App.js
-const Router = ({ isLoggedIn, userObj }) => {
+const Router = ({ isLoggedIn, userObj, refreshUser }) => {
   return (
     <BrowserRouter>
       {isLoggedIn && <Navigation userObj={userObj} />}
@@ -18,7 +18,10 @@ const Router = ({ isLoggedIn, userObj }) => {
         ) : (
           <Route path="/" element={<Auth />} />
         )}
-        <Route path="/profile" element={<Profile userObj={userObj} />} />
+        <Route
+          path="/profile"
+          element={<Profile userObj={userObj} refreshUser={refreshUser} />}
+        />
       </Routes>
     </BrowserRouter>
   );

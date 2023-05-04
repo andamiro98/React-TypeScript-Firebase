@@ -5,7 +5,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 
 // userObj : 로그인한 유저 정보 prop
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, refreshUser }) => {
   const navigate = useNavigate();
   const [newDisplayname, setNewDisplayName] = useState(userObj.displayName);
   const onLogOutClick = () => {
@@ -44,6 +44,7 @@ const Profile = ({ userObj }) => {
     if (userObj.displayName !== newDisplayname) {
       await updateProfile(userObj, { displayName: newDisplayname });
     }
+    refreshUser();
   };
 
   return (
