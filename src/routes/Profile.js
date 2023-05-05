@@ -10,7 +10,7 @@ const Profile = ({ userObj, refreshUser }) => {
   const [newDisplayname, setNewDisplayName] = useState(userObj.displayName);
   const onLogOutClick = () => {
     authService.signOut();
-    navigate('/');
+    navigate('/login');
   };
 
   // 내 chuweets 얻는 function

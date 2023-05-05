@@ -4,7 +4,6 @@ export const St_AuthContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
   justify-content: center;
   align-items: center;
 `;
@@ -23,14 +22,12 @@ export const St_AuthBtn = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 50px;
   height: 50px;
   border-radius: 50px;
   background-size: cover;
-
   :hover {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 `;

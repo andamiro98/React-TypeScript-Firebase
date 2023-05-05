@@ -3,6 +3,7 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { dbService, storageService } from '../fbase';
 import { v4 as uuidv4 } from 'uuid';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { PostForm, InputContainer, PostInput } from '../css/AddChuweetStyle';
 
 const Addchuweet = ({ userObj }) => {
   const fileInput = useRef();
@@ -31,6 +32,11 @@ const Addchuweet = ({ userObj }) => {
   };
 
   const onSubmit = async (e) => {
+    if (post == '') {
+      alert('게시글을 작성하세요');
+      return;
+    }
+
     e.preventDefault();
     let attachmentUrl = '';
 
@@ -62,20 +68,25 @@ const Addchuweet = ({ userObj }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        value={post}
-        onChange={onchange}
-        placeholder="추억의 녀석들"
-        maxLength={200}
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={onFileChange}
-        ref={fileInput}
-      />
+    <PostForm onSubmit={onSubmit}>
+      <InputContainer>
+        <PostInput
+          type="text"
+          value={post}
+          onChange={onchange}
+          placeholder="추억 남기기"
+          maxLength={200}
+        />
+      </InputContainer>
+      <div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          ref={fileInput}
+        />
+      </div>
+
       <input type="submit" value="완료" />
       {attachment && (
         <div>
@@ -83,7 +94,7 @@ const Addchuweet = ({ userObj }) => {
           <button onClick={onCleraAttachment}>취소</button>
         </div>
       )}
-    </form>
+    </PostForm>
   );
 };
 

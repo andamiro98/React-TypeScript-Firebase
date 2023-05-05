@@ -1,19 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { NavContainer } from '../css/Navstyle';
+import { FaUserCircle } from 'react-icons/fa';
+import { HiHome } from 'react-icons/hi';
 
 const Navigation = ({ userObj }) => {
-  console.log(userObj);
+  const navigate = useNavigate();
+
+  const navHome = () => {
+    navigate('/');
+  };
+
+  const navProfile = () => {
+    navigate('/profile');
+  };
+
   return (
-    <>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/profile">{userObj.displayName} Profile</Link>
-        </li>
-      </ul>
-    </>
+    <NavContainer>
+      <div onClick={navHome}>
+        <HiHome className="Usericon" />
+        <div>Home</div>
+      </div>
+
+      <div onClick={navProfile}>
+        <FaUserCircle className="Usericon" />
+        <div>{userObj.displayName}의 Profile</div>
+      </div>
+    </NavContainer>
   );
 };
 

@@ -11,18 +11,20 @@ import Navigation from './Navigation';
 const Router = ({ isLoggedIn, userObj, refreshUser }) => {
   return (
     <BrowserRouter>
-      {isLoggedIn && <Navigation userObj={userObj} />}
-      <Routes>
-        {isLoggedIn ? (
-          <Route path="/" element={<Home userObj={userObj} />} />
-        ) : (
-          <Route path="/" element={<Auth />} />
-        )}
-        <Route
-          path="/profile"
-          element={<Profile userObj={userObj} refreshUser={refreshUser} />}
-        />
-      </Routes>
+      <div>
+        {isLoggedIn && <Navigation userObj={userObj} />}
+        <Routes>
+          {isLoggedIn ? (
+            <Route path="/" element={<Home userObj={userObj} />} />
+          ) : (
+            <Route path="/login" element={<Auth />} />
+          )}
+          <Route
+            path="/profile"
+            element={<Profile userObj={userObj} refreshUser={refreshUser} />}
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };
