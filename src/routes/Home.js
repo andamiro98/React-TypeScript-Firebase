@@ -1,26 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { dbService, storageService } from '../fbase';
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  query,
-  orderBy,
-  onSnapshot,
-} from 'firebase/firestore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import { v4 as uuidv4 } from 'uuid';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+
 import Chuweet from '../components/Chuweet';
+import Addchuweet from '../components/AddChuweet';
 
 //Props
 // userObj : App.js => Router.js => Home.js
 const Home = ({ userObj }) => {
   console.log(userObj);
-  const [post, setPost] = useState('');
-  const [chuweets, setChuweets] = useState([]);
-  const [attachment, setAttachment] = useState('');
 
-  const fileInput = useRef();
+  const [chuweets, setChuweets] = useState([]);
+
   // const getChuweets = async () => {
   //   const q = query(collection(dbService, 'chuweets'));
   //   const querySnapshot = await getDocs(q);
@@ -50,82 +41,9 @@ const Home = ({ userObj }) => {
     });
   }, []);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    let attachmentUrl = '';
-
-    if (attachment !== '') {
-      //파일 경로 참조 만들기
-      const attachmentRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
-      //storage 참조 경로로 파일 업로드 하기
-      const response = await uploadString(
-        attachmentRef,
-        attachment,
-        'data_url'
-      );
-      console.log(response);
-      //storage 참조 경로에 있는 파일의 URL을 다운로드해서 attachmentUrl 변수에 넣어서 업데이트
-      attachmentUrl = await getDownloadURL(response.ref);
-      console.log(attachmentUrl);
-    }
-    const chuweetObj = {
-      text: post,
-      createdAt: serverTimestamp(),
-      creatorID: userObj.uid,
-      attachmentUrl,
-    };
-    //트윗하기 누르면 chuweetObj 형태로 새로운 document 생성하여 chuweets 콜렉션에 넣기
-    await addDoc(collection(dbService, 'chuweets'), chuweetObj);
-    fileInput.current.value = '';
-    setPost('');
-    setAttachment('');
-  };
-
-  const onchange = (e) => {
-    setPost(e.target.value);
-  };
-  console.log(chuweets);
-
-  const onFileChange = (e) => {
-    console.log(e.target.files[0]);
-    const reader = new FileReader();
-    reader.onloadend = (finishedEvent) => {
-      console.log(finishedEvent);
-      setAttachment(finishedEvent.currentTarget.result);
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
-
-  const onCleraAttachment = () => {
-    setAttachment(null);
-    fileInput.current.value = '';
-    setAttachment('');
-  };
-
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={post}
-          onChange={onchange}
-          placeholder="추억의 녀석들"
-          maxLength={200}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onFileChange}
-          ref={fileInput}
-        />
-        <input type="submit" value="완료" />
-        {attachment && (
-          <div>
-            <img src={attachment} width="50px" height="50px" />
-            <button onClick={onCleraAttachment}>취소</button>
-          </div>
-        )}
-      </form>
+      <Addchuweet userObj={userObj} />
       <div>
         {chuweets.map((chuweet) => (
           <Chuweet
