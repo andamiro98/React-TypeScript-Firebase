@@ -6,6 +6,7 @@ export const AuthLayout = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin: auto;
 `;
 
 export const Authform = styled.form`
@@ -17,7 +18,7 @@ export const Authform = styled.form`
 `;
 
 export const AuthInput = styled.input`
-  max-width: 320px;
+  max-width: 400px;
   width: 100%;
   height: 40px;
   padding: 10px;
@@ -37,7 +38,7 @@ export const AuthInput = styled.input`
 export const AuthSubmit = styled.input`
   display: flex;
   justify-content: center;
-  max-width: 320px;
+  max-width: 400px;
   width: 100%;
   height: 40px;
   padding: 10px;
@@ -55,8 +56,8 @@ export const AuthSubmit = styled.input`
 
 export const AuthSwitch = styled.div`
   margin: auto;
-  max-width: 100%;
-  width: 65px;
+  max-width: 320px;
+  width: 100%;
   text-align: center;
   color: #eeeeee;
   cursor: pointer;

@@ -1,31 +1,30 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { St_Router } from '../css/RouterStyle';
 import Home from '../routes/Home';
 import Auth from '../routes/Auth';
 import Profile from '../routes/Profile';
-import Navigation from './Navigation';
 
 // Props
 // isLoggedIn, userObj : App.js
-const Router = ({ isLoggedIn, userObj, refreshUser }) => {
+const Router = ({ userObj, refreshUser, isLoggedIn }) => {
   return (
-    <BrowserRouter>
-      <div>
-        {isLoggedIn && <Navigation userObj={userObj} />}
-        <Routes>
-          {isLoggedIn ? (
-            <Route path="/" element={<Home userObj={userObj} />} />
-          ) : (
-            <Route path="/login" element={<Auth />} />
-          )}
+    <>
+      <Routes>
+        {isLoggedIn ? (
           <Route
-            path="/profile"
-            element={<Profile userObj={userObj} refreshUser={refreshUser} />}
+            path="/"
+            element={<Home userObj={userObj} isLoggedIn={isLoggedIn} />}
           />
-        </Routes>
-      </div>
-    </BrowserRouter>
+        ) : (
+          <Route path="/login" element={<Auth />} />
+        )}
+        <Route
+          path="/profile"
+          element={<Profile userObj={userObj} refreshUser={refreshUser} />}
+        />
+      </Routes>
+    </>
   );
 };
 

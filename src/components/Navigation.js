@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { NavContainer } from '../css/Navstyle';
+import { NavContainer, Nav, Navtext } from '../css/Navstyle';
 import { FaUserCircle } from 'react-icons/fa';
-import { HiHome } from 'react-icons/hi';
+import { AiOutlineQq } from 'react-icons/ai';
 
 const Navigation = ({ userObj }) => {
   const navigate = useNavigate();
@@ -17,15 +17,15 @@ const Navigation = ({ userObj }) => {
 
   return (
     <NavContainer>
-      <div onClick={navHome}>
-        <HiHome className="Usericon" />
-        <div>Home</div>
-      </div>
+      <Nav onClick={navHome}>
+        <AiOutlineQq className="Usericon" />
+        <Navtext>Home</Navtext>
+      </Nav>
 
-      <div onClick={navProfile}>
+      <Nav onClick={navProfile}>
         <FaUserCircle className="Usericon" />
-        <div>{userObj.displayName}의 Profile</div>
-      </div>
+        <Navtext>{userObj?.displayName}의 Profile</Navtext>
+      </Nav>
     </NavContainer>
   );
 };
