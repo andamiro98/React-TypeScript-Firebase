@@ -8,6 +8,18 @@ export const AuthLayout = styled.div`
   align-items: center;
   margin: auto;
   margin-bottom: 30px;
+  input {
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    :hover {
+      opacity: 0.7;
+    }
+  }
 `;
 
 export const Authform = styled.form`
@@ -19,14 +31,7 @@ export const Authform = styled.form`
 `;
 
 export const AuthInput = styled.input`
-  max-width: 400px;
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  border-radius: 5px;
   background-color: #eeeeee;
-  margin-bottom: 10px;
-  font-size: 16px;
   color: #393e46;
   :focus {
     opacity: 0.9;
@@ -39,19 +44,11 @@ export const AuthInput = styled.input`
 export const AuthSubmit = styled.input`
   display: flex;
   justify-content: center;
-  max-width: 400px;
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  font-size: 16px;
   text-align: center;
   background: #f05454;
   color: #e4dccf;
   margin-top: 10;
   cursor: pointer;
-  font-size: 15px;
   font-weight: bold;
 `;
 
@@ -67,4 +64,7 @@ export const AuthSwitch = styled.div`
   display: block;
   font-size: 16px;
   text-decoration: underline;
+  :hover {
+    opacity: 0.7;
+  }
 `;
