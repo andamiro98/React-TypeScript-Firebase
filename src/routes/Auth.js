@@ -29,12 +29,13 @@ const Auth = () => {
     <St_AuthContainer>
       <AuthForm />
       <St_AuthBtns>
-        <St_AuthBtn name="google" onClick={onSocialClick}>
-          Continue with Google
-        </St_AuthBtn>
-        <St_AuthBtn name="github" onClick={onSocialClick}>
-          Continue with Github
-        </St_AuthBtn>
+        <St_AuthBtn
+          src="./google (1).png"
+          name="google"
+          onClick={onSocialClick}
+        />
+
+        <St_AuthBtn src="./github.png" name="github" onClick={onSocialClick} />
       </St_AuthBtns>
     </St_AuthContainer>
   );

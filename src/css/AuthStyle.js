@@ -4,7 +4,6 @@ export const St_AuthContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -12,26 +11,26 @@ export const St_AuthContainer = styled.div`
 
 export const St_AuthBtns = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 320px;
 `;
 
-export const St_AuthBtn = styled.button`
-  background: white;
-  color: black;
-  width: 290px;
-  padding: 7px 0px 7px 0px;
+export const St_AuthBtn = styled.img`
+  margin-right: 10px;
+  margin-left: 10px;
   cursor: pointer;
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
-  border: 0.5px solid rgb(208, 211, 215);
-  color: rgb(66, 67, 68);
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-size: cover;
+
   :hover {
-    background: rgb(247, 247, 247);
-    color: black;
+    width: 100px;
+    height: 100px;
   }
 `;

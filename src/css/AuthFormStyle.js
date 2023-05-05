@@ -61,7 +61,7 @@ export const AuthSwitch = styled.div`
   color: #eeeeee;
   cursor: pointer;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   display: block;
   font-size: 16px;
   text-decoration: underline;
