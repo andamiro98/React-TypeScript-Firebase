@@ -7,6 +7,7 @@ export const AuthLayout = styled.div`
   width: 100%;
   align-items: center;
   margin: auto;
+  margin-bottom: 30px;
 `;
 
 export const Authform = styled.form`
