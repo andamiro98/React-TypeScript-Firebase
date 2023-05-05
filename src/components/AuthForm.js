@@ -4,7 +4,13 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { authService } from '../fbase';
-import { AuthInput } from '../css/AuthFormStyle';
+import {
+  AuthInput,
+  AuthLayout,
+  AuthSubmit,
+  AuthSwitch,
+  Authform,
+} from '../css/AuthFormStyle';
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -50,8 +56,8 @@ const AuthForm = () => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <AuthLayout>
+      <Authform onSubmit={onSubmit}>
         <AuthInput
           name="email"
           type="email"
@@ -68,16 +74,13 @@ const AuthForm = () => {
           onChange={onChange}
           required
         />
-        <input
-          type="submit"
-          value={newAccount ? 'Create Account' : 'Sign In'}
-        />
-        {error}
-      </form>
-      <span onClick={toggleAccount}>
-        {newAccount ? 'Sign In' : 'Create Account'}
-      </span>
-    </>
+        <AuthSubmit type="submit" value={newAccount ? '로그인' : '회원가입'} />
+      </Authform>
+
+      <AuthSwitch onClick={toggleAccount}>
+        {newAccount ? '회원가입' : '로그인'}
+      </AuthSwitch>
+    </AuthLayout>
   );
 };
 
