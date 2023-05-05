@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { authService } from '../fbase';
+import { AiOutlineQq } from 'react-icons/ai';
 import {
   AuthInput,
   AuthLayout,
@@ -11,6 +12,7 @@ import {
   AuthSwitch,
   Authform,
 } from '../css/AuthFormStyle';
+import '../Fonts/Font.css';
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -57,6 +59,8 @@ const AuthForm = () => {
 
   return (
     <AuthLayout>
+      <AiOutlineQq className="Usericon" />
+      <a style={{ fontFamily: 'googleSingleDay' }}>Old Boys</a>
       <Authform onSubmit={onSubmit}>
         <AuthInput
           name="email"

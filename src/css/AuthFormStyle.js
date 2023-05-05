@@ -20,6 +20,21 @@ export const AuthLayout = styled.div`
       opacity: 0.7;
     }
   }
+  .Usericon {
+    display: flex;
+    color: #dddddd;
+    font-size: 80px;
+    margin: auto;
+    margin-bottom: 0px;
+    :hover {
+      color: #f05454;
+    }
+  }
+  a {
+    font-size: 30px;
+    color: #f05454;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Authform = styled.form`
