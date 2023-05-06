@@ -87,7 +87,7 @@ const Addchuweet = ({ userObj }) => {
           type="text"
           value={post}
           onChange={onchange}
-          placeholder="추억 남기기"
+          placeholder="Add..."
           maxLength={200}
         />
       </InputContainer>

@@ -22,16 +22,21 @@ export const PostInput = styled.input`
     color: #222831;
     font-weight: 500;
     font-size: 15px;
+    font-family: 'googleSingleDay';
   }
   flex-grow: 1;
   height: 40px;
   padding: 0px 20px;
   color: #222831;
   background-color: #dddddd;
+
   /* border: 1px solid #f05454; */
   border-radius: 5px;
   font-weight: 500;
   font-size: 15px;
+  :hover {
+    opacity: 0.8;
+  }
 `;
 
 export const FileInput = styled.input`
@@ -45,12 +50,14 @@ export const FileLabel = styled.label`
   align-items: center;
   display: flex;
   font-size: 20px;
-  color: #f05454;
+  color: #dddddd;
   cursor: pointer;
+  font-family: 'googleSingleDay';
   :hover {
     opacity: 0.7;
   }
   .ImgAddIcon {
+    color: #f05454;
     margin-top: 3px;
     margin-left: 5px;
     font-size: 30px;
@@ -67,12 +74,13 @@ export const Bottomdiv = styled.div`
 export const SubmitInput = styled.input`
   width: 100%;
   max-width: 80px;
-  height: 25px;
+  height: 30px;
   color: #222831;
   display: flex;
   border-radius: 5px;
   background-color: #dddddd;
   justify-content: center;
+  box-shadow: 5px 10px 15px #222831;
   font-family: 'googleSingleDay';
   :hover {
     background-color: #f05454;
@@ -80,21 +88,13 @@ export const SubmitInput = styled.input`
   }
 `;
 
-// export const ImgBox = styled.div`
-//   display: flex;
-//   background-color: saddlebrown;
-// `;
-
 export const ImgFile = styled.img`
   width: 100%;
   height: 100%;
   max-width: 250px;
   max-height: 250px;
-  margin-top: 10px;
+  margin-top: 20px;
   box-shadow: 10px 20px 30px black;
-  /* :hover {
-    opacity: 0.8;
-  } */
 `;
 
 export const ClearBtn = styled.div`
@@ -105,12 +105,11 @@ export const ClearBtn = styled.div`
   color: #dddddd;
   border: none;
   cursor: pointer;
-  :hover {
-    opacity: 0.8;
-  }
+
   .CancelICon {
     font-size: 30px;
     font-weight: bold;
+
     :hover {
       /* font-size: 25px; */
       color: #f05454;
