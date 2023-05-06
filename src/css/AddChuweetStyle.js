@@ -77,3 +77,34 @@ export const SubmitInput = styled.input`
     background-color: #f05454;
   }
 `;
+
+export const ImgFile = styled.img`
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
+  margin-top: 10px;
+  :hover {
+    opacity: 0.8;
+  }
+`;
+
+export const ClearBtn = styled.div`
+  display: flex;
+  position: relative;
+  bottom: 270px;
+  left: 110px;
+  color: #f05454;
+  border: none;
+  cursor: pointer;
+  :hover {
+    opacity: 0.8;
+  }
+  .CancelICon {
+    font-size: 22px;
+    font-weight: bold;
+    :hover {
+      font-size: 25px;
+    }
+  }
+`;

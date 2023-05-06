@@ -10,8 +10,12 @@ import {
   FileInput,
   FileLabel,
   Bottomdiv,
+  ImgFile,
+  ClearBtn,
 } from '../css/AddChuweetStyle';
 import { BiImageAdd } from 'react-icons/bi';
+import { ImCancelCircle } from 'react-icons/im';
+
 import { SubmitInput } from '../css/AddChuweetStyle';
 
 const Addchuweet = ({ userObj }) => {
@@ -99,15 +103,16 @@ const Addchuweet = ({ userObj }) => {
         onChange={onFileChange}
         ref={fileInput}
       />
+      {attachment && <ImgFile src={attachment} />}
+
       <Bottomdiv>
         <SubmitInput type="submit" value="Share" />
       </Bottomdiv>
 
       {attachment && (
-        <div>
-          <img src={attachment} width="50px" height="50px" />
-          <button onClick={onCleraAttachment}>취소</button>
-        </div>
+        <ClearBtn onClick={onCleraAttachment}>
+          <ImCancelCircle className="CancelICon" />
+        </ClearBtn>
       )}
     </PostForm>
   );
