@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { dbService, storageService } from '../fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
+import {
+  PostBox,
+  PostImg,
+  PostText,
+  TextBox,
+  ImgBox,
+  PostLayout,
+} from '../css/ChuweetStyle';
 
 // interface ChuweetObj {
 //   createdAt: {
@@ -50,7 +58,7 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <PostLayout>
       {update ? (
         <>
           <form onSubmit={onSubmit}>
@@ -65,20 +73,24 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
           <button onClick={updateToggle}>취소</button>
         </>
       ) : (
-        <>
-          <h4>{chuweetObj.text}</h4>
-          {chuweetObj.attachmentUrl && (
-            <img src={chuweetObj.attachmentUrl} width="50px" height="50px" />
-          )}
-          {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>삭제하기</button>
-              <button onClick={updateToggle}>수정하기</button>
-            </>
-          )}
-        </>
+        <PostBox>
+          <ImgBox>
+            {chuweetObj.attachmentUrl && (
+              <PostImg src={chuweetObj.attachmentUrl} />
+            )}
+          </ImgBox>
+          <PostText>{chuweetObj.text}</PostText>
+          {/* <div>
+            {isOwner && (
+              <>
+                <button onClick={onDeleteClick}>삭제하기</button>
+                <button onClick={updateToggle}>수정하기</button>
+              </>
+            )}
+          </div> */}
+        </PostBox>
       )}
-    </div>
+    </PostLayout>
   );
 };
 

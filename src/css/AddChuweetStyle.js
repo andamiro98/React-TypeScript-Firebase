@@ -80,7 +80,6 @@ export const SubmitInput = styled.input`
   border-radius: 5px;
   background-color: #dddddd;
   justify-content: center;
-  box-shadow: 5px 10px 15px #222831;
   font-family: 'googleSingleDay';
   :hover {
     background-color: #f05454;
