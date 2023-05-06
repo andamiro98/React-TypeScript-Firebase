@@ -4,8 +4,8 @@
   .lol{
     fill: #DDDDDD;
   }
-  :hover {
-    fill: #F05454;
+  div svg:hover .lol{
+      fill: #F05454;
   }
   
   

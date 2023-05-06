@@ -10,8 +10,6 @@ export const NavContainer = styled.div`
     color: #dddddd;
     font-size: 50px;
     margin: auto;
-    :hover {
-    }
   }
   width: 100%;
   display: flex;

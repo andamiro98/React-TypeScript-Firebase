@@ -12,10 +12,10 @@ import {
   Bottomdiv,
   ImgFile,
   ClearBtn,
+  ImgBox,
 } from '../css/AddChuweetStyle';
 import { BiImageAdd } from 'react-icons/bi';
-import { ImCancelCircle } from 'react-icons/im';
-
+import { AiFillDelete } from 'react-icons/ai';
 import { SubmitInput } from '../css/AddChuweetStyle';
 
 const Addchuweet = ({ userObj }) => {
@@ -111,7 +111,7 @@ const Addchuweet = ({ userObj }) => {
 
       {attachment && (
         <ClearBtn onClick={onCleraAttachment}>
-          <ImCancelCircle className="CancelICon" />
+          <AiFillDelete className="CancelICon" />
         </ClearBtn>
       )}
     </PostForm>
