@@ -3,7 +3,16 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { dbService, storageService } from '../fbase';
 import { v4 as uuidv4 } from 'uuid';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { PostForm, InputContainer, PostInput } from '../css/AddChuweetStyle';
+import {
+  PostForm,
+  InputContainer,
+  PostInput,
+  FileInput,
+  FileLabel,
+  Bottomdiv,
+} from '../css/AddChuweetStyle';
+import { BiImageAdd } from 'react-icons/bi';
+import { SubmitInput } from '../css/AddChuweetStyle';
 
 const Addchuweet = ({ userObj }) => {
   const fileInput = useRef();
@@ -78,16 +87,22 @@ const Addchuweet = ({ userObj }) => {
           maxLength={200}
         />
       </InputContainer>
-      <div>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onFileChange}
-          ref={fileInput}
-        />
-      </div>
 
-      <input type="submit" value="완료" />
+      <FileLabel for="input-file">
+        Add Photos
+        <BiImageAdd className="ImgAddIcon" />
+      </FileLabel>
+      <FileInput
+        id="input-file"
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        ref={fileInput}
+      />
+      <Bottomdiv>
+        <SubmitInput type="submit" value="Share" />
+      </Bottomdiv>
+
       {attachment && (
         <div>
           <img src={attachment} width="50px" height="50px" />

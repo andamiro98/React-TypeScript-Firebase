@@ -12,7 +12,6 @@ import {
   AuthSwitch,
   Authform,
 } from '../css/AuthFormStyle';
-import '../Fonts/Font.css';
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -60,7 +59,7 @@ const AuthForm = () => {
   return (
     <AuthLayout>
       <AiOutlineQq className="Usericon" />
-      <a style={{ fontFamily: 'googleSingleDay' }}>Old Boys</a>
+      <a>Old Boys</a>
       <Authform onSubmit={onSubmit}>
         <AuthInput
           name="email"

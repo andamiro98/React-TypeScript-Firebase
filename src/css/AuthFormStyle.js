@@ -31,6 +31,7 @@ export const AuthLayout = styled.div`
     }
   }
   a {
+    font-family: 'googleSingleDay';
     font-size: 30px;
     color: #f05454;
     margin-bottom: 10px;

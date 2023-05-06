@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { St_Router } from '../css/RouterStyle';
 import Home from '../routes/Home';
 import Auth from '../routes/Auth';
 import Profile from '../routes/Profile';

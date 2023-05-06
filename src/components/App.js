@@ -5,6 +5,7 @@ import Layout from './Layout';
 import Home from '../routes/Home';
 import Auth from '../routes/Auth';
 import { useNavigate } from 'react-router-dom';
+import '../Fonts/Font.css';
 
 function App() {
   //console.log(authService.currentUser); // user | null

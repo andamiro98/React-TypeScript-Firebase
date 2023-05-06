@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { NavContainer, Nav, Navtext } from '../css/Navstyle';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineQq } from 'react-icons/ai';
-
+import { ReactComponent as Iclol } from '../svg/LoL.svg';
 const Navigation = ({ userObj }) => {
   const navigate = useNavigate();
 
@@ -22,9 +22,15 @@ const Navigation = ({ userObj }) => {
         <Navtext>Home</Navtext>
       </Nav>
 
+      <Nav>
+        <Iclol className="LoLicon" />
+        <Navtext>LoL</Navtext>
+      </Nav>
+
       <Nav onClick={navProfile}>
         <FaUserCircle className="Usericon" />
-        <Navtext>{userObj?.displayName}의 Profile</Navtext>
+        <Navtext>Profile</Navtext>
+        {/* {userObj?.displayName} */}
       </Nav>
     </NavContainer>
   );
