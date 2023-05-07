@@ -5,29 +5,12 @@ export const PostLayout = styled.div`
   justify-content: center;
 `;
 
-export const ImgBox = styled.div`
-  /* width: 100%;
-  max-width: 100px;
-  height: 150px;
-  align-items: center;
-  display: flex; */
-`;
-
-export const PostImg = styled.img`
-  /* width: 150px;
-  height: 150px; */
-  /* position: relative;
-  bottom: 25px;
-  right: 50px; */
-  /* border-radius: 15px; */
-`;
-
 export const PostBox = styled.div`
+  display: flex;
   background-color: #dddddd;
   opacity: 0.9;
   margin-top: 50px;
   box-shadow: 5px 10px 15px 0px black;
-
   width: 19rem;
   border-width: 0px;
 
@@ -35,13 +18,15 @@ export const PostBox = styled.div`
     padding: 5px;
     img {
       border-radius: 8px;
-      width: 50px;
-      flex-direction: row;
+      width: 55px;
+      height: 55px;
     }
     .card-title {
+      width: fit-content;
       margin: 0px;
-      margin-left: 3px;
-      flex-direction: row;
+      div {
+        font-size: 14px;
+      }
     }
     .card-text {
       margin-top: 5px;
@@ -49,11 +34,16 @@ export const PostBox = styled.div`
     }
   }
 `;
+export const BodyTopBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const ProfileBox = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: start;
+  width: 60%;
 
   div {
     font-size: 14px;
@@ -67,12 +57,17 @@ export const PostTime = styled.div`
   flex-direction: column;
 `;
 
-export const PostText = styled.div`
-  /* padding-top: 25px;
-  padding: 25px 10px 25px 10px;
-  width: 100%;
-  max-width: 400px;
-  background-color: #dddddd;
-  color: #222831;
-  border-radius: 15px; */
+export const MenuBox = styled.div`
+  display: flex;
+  width: 40%;
+  height: 100px;
+  justify-content: end;
+
+  .ArrowIc {
+    font-size: 20px;
+    color: #222831;
+    :hover {
+      color: #f05454;
+    }
+  }
 `;

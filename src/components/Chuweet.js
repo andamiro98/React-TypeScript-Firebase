@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { dbService, storageService } from '../fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
+import { BsThreeDots } from 'react-icons/bs';
 import {
   PostBox,
-  PostImg,
   PostLayout,
   PostTime,
   ProfileBox,
+  MenuBox,
+  BodyTopBox,
 } from '../css/ChuweetStyle';
 
 // interface ChuweetObj {
@@ -26,7 +28,7 @@ import {
 const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
   const [update, setUpdate] = useState(false);
   const [updatePost, setUpdatePost] = useState(chuweetObj.text);
-  console.log(chuweetObj.createdAt.seconds);
+  const [menu, setMenu] = useState(false);
   const ChuweetTextRef = doc(dbService, 'chuweets', `${chuweetObj.postid}`);
 
   const dateInSeconds = chuweetObj.createdAt.seconds;
@@ -67,6 +69,10 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
     setUpdate(false);
   };
 
+  const onClickMenu = () => {
+    setMenu(!menu);
+  };
+
   return (
     <PostLayout>
       {update ? (
@@ -85,7 +91,7 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
       ) : (
         <PostBox className="card">
           {chuweetObj.attachmentUrl && (
-            <PostImg
+            <img
               src={chuweetObj.attachmentUrl}
               className="card-img-top"
               alt="..."
@@ -93,13 +99,27 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
           )}
 
           <div className="card-body">
-            <ProfileBox>
-              <img src={userObj.photoURL} />
-              <div>
-                <div className="card-title">{userObj.displayName}</div>
-                <div>{`${year}년 ${month}월 ${day}일`}</div>
-              </div>
-            </ProfileBox>
+            <BodyTopBox>
+              <ProfileBox>
+                <img src={userObj.photoURL} />
+                <div>
+                  <div className="card-title">
+                    <div>{userObj.displayName}</div>
+                  </div>
+                  <div>{`${year}년 ${month}월 ${day}일`}</div>
+                </div>
+              </ProfileBox>
+
+              <MenuBox>
+                <BsThreeDots className="ArrowIc" onClick={onClickMenu} />
+                {menu && (
+                  <div>
+                    <button onClick={onDeleteClick}>삭제하기</button>
+                    <button onClick={updateToggle}>수정하기</button>
+                  </div>
+                )}
+              </MenuBox>
+            </BodyTopBox>
 
             <p className="card-text">{chuweetObj.text}</p>
 
