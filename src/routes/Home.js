@@ -55,6 +55,7 @@ const Home = ({ userObj, isLoggedIn, refreshUser }) => {
         {chuweets.map((chuweet) => (
           <Chuweet
             key={chuweet.postid}
+            userObj={userObj}
             chuweetObj={chuweet}
             isOwner={chuweet.creatorID === userObj.uid}
           />

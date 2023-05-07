@@ -5,10 +5,9 @@ import { ref, deleteObject } from 'firebase/storage';
 import {
   PostBox,
   PostImg,
-  PostText,
-  TextBox,
-  ImgBox,
   PostLayout,
+  PostTime,
+  ProfileBox,
 } from '../css/ChuweetStyle';
 
 // interface ChuweetObj {
@@ -24,11 +23,22 @@ import {
 // Props
 // chuweetObj : <Home> of chuweets
 // isOwner : <Home> of chuweets.map
-const Chuweet = ({ chuweetObj, isOwner }) => {
+const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
   const [update, setUpdate] = useState(false);
   const [updatePost, setUpdatePost] = useState(chuweetObj.text);
-  console.log(chuweetObj.text);
+  console.log(chuweetObj.createdAt.seconds);
   const ChuweetTextRef = doc(dbService, 'chuweets', `${chuweetObj.postid}`);
+
+  const dateInSeconds = chuweetObj.createdAt.seconds;
+  const dateInNanoseconds = chuweetObj.createdAt.nanoseconds;
+  const date = new Date(dateInSeconds * 1000 + dateInNanoseconds / 1000000);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
 
   const onDeleteClick = async () => {
     const reCheck = window.confirm('삭제하시겠습니까?');
@@ -60,7 +70,7 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
   return (
     <PostLayout>
       {update ? (
-        <>
+        <div>
           <form onSubmit={onSubmit}>
             <input
               type="text"
@@ -71,23 +81,37 @@ const Chuweet = ({ chuweetObj, isOwner }) => {
             <input type="submit" value="수정하기" />
           </form>
           <button onClick={updateToggle}>취소</button>
-        </>
+        </div>
       ) : (
-        <PostBox>
-          <ImgBox>
-            {chuweetObj.attachmentUrl && (
-              <PostImg src={chuweetObj.attachmentUrl} />
-            )}
-          </ImgBox>
-          <PostText>{chuweetObj.text}</PostText>
-          {/* <div>
-            {isOwner && (
-              <>
-                <button onClick={onDeleteClick}>삭제하기</button>
-                <button onClick={updateToggle}>수정하기</button>
-              </>
-            )}
-          </div> */}
+        <PostBox className="card">
+          {chuweetObj.attachmentUrl && (
+            <PostImg
+              src={chuweetObj.attachmentUrl}
+              className="card-img-top"
+              alt="..."
+            />
+          )}
+
+          <div className="card-body">
+            <ProfileBox>
+              <img src={userObj.photoURL} />
+              <div>
+                <div className="card-title">{userObj.displayName}</div>
+                <div>{`${year}년 ${month}월 ${day}일`}</div>
+              </div>
+            </ProfileBox>
+
+            <p className="card-text">{chuweetObj.text}</p>
+
+            {/* <div>
+              {isOwner && (
+                <div>
+                  <button onClick={onDeleteClick}>삭제하기</button>
+                  <button onClick={updateToggle}>수정하기</button>
+                </div>
+              )}
+            </div> */}
+          </div>
         </PostBox>
       )}
     </PostLayout>
