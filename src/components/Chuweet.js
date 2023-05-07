@@ -34,8 +34,8 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
   const [menu, setMenu] = useState(false);
   const ChuweetTextRef = doc(dbService, 'chuweets', `${chuweetObj.postid}`);
 
-  const dateInSeconds = chuweetObj.createdAt.seconds;
-  const dateInNanoseconds = chuweetObj.createdAt.nanoseconds;
+  const dateInSeconds = chuweetObj.createdAt?.seconds;
+  const dateInNanoseconds = chuweetObj.createdAt?.nanoseconds;
   const date = new Date(dateInSeconds * 1000 + dateInNanoseconds / 1000000);
 
   const year = date.getFullYear();
