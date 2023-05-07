@@ -11,11 +11,15 @@ export const PostBox = styled.div`
   opacity: 0.9;
   margin-top: 50px;
   box-shadow: 5px 10px 15px 0px black;
-  width: 19rem;
+  width: 400px;
   border-width: 0px;
+  .card-img-top {
+    margin: auto;
+    height: 400px;
+  }
 
   .card-body {
-    padding: 5px;
+    padding: 10px;
     img {
       border-radius: 8px;
       width: 55px;
@@ -52,22 +56,41 @@ export const ProfileBox = styled.div`
   }
 `;
 
-export const PostTime = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+export const PostTime = styled.div``;
 
 export const MenuBox = styled.div`
   display: flex;
   width: 40%;
-  height: 100px;
-  justify-content: end;
+  height: 80px;
+  flex-direction: column;
 
   .ArrowIc {
+    margin-left: 130px;
     font-size: 20px;
     color: #222831;
     :hover {
       color: #f05454;
+      cursor: pointer;
+    }
+  }
+  .deletepost {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #f05454;
+  }
+  .petchpost {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  span {
+    cursor: pointer;
+    :hover {
+      opacity: 0.5;
     }
   }
 `;

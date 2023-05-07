@@ -3,6 +3,9 @@ import { dbService, storageService } from '../fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import { BsThreeDots } from 'react-icons/bs';
+import { AiFillDelete } from 'react-icons/ai';
+import { BiPencil } from 'react-icons/bi';
+
 import {
   PostBox,
   PostLayout,
@@ -105,8 +108,8 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
                 <div>
                   <div className="card-title">
                     <div>{userObj.displayName}</div>
+                    <div>{`${year}년 ${month}월 ${day}일`}</div>
                   </div>
-                  <div>{`${year}년 ${month}월 ${day}일`}</div>
                 </div>
               </ProfileBox>
 
@@ -114,23 +117,17 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
                 <BsThreeDots className="ArrowIc" onClick={onClickMenu} />
                 {menu && (
                   <div>
-                    <button onClick={onDeleteClick}>삭제하기</button>
-                    <button onClick={updateToggle}>수정하기</button>
+                    <span onClick={updateToggle}>
+                      <BiPencil className="petchpost" />
+                    </span>
+                    <span onClick={onDeleteClick}>
+                      <AiFillDelete className="deletepost" />
+                    </span>
                   </div>
                 )}
               </MenuBox>
             </BodyTopBox>
-
             <p className="card-text">{chuweetObj.text}</p>
-
-            {/* <div>
-              {isOwner && (
-                <div>
-                  <button onClick={onDeleteClick}>삭제하기</button>
-                  <button onClick={updateToggle}>수정하기</button>
-                </div>
-              )}
-            </div> */}
           </div>
         </PostBox>
       )}

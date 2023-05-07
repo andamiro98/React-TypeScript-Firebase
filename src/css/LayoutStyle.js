@@ -5,6 +5,6 @@ export const St_Layout = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 `;
