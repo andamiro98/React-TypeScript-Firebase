@@ -8,6 +8,7 @@ export const AuthLayout = styled.div`
   align-items: center;
   margin: auto;
   margin-bottom: 30px;
+
   input {
     max-width: 400px;
     width: 100%;
@@ -24,7 +25,6 @@ export const AuthLayout = styled.div`
     display: flex;
     color: #dddddd;
     font-size: 80px;
-    margin: auto;
     margin-bottom: 0px;
     :hover {
       color: #f05454;
@@ -35,6 +35,8 @@ export const AuthLayout = styled.div`
     font-size: 30px;
     color: #f05454;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
   }
 `;
 

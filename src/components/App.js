@@ -33,7 +33,15 @@ function App() {
   };
 
   return (
-    <Layout>
+    <div
+      style={{
+        // height: '100vh',
+        // width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: '#30475e',
+      }}
+    >
       {/* {init ? (
         <div>
           <Auth
@@ -53,11 +61,21 @@ function App() {
           refreshUser={refreshUser}
         />
       ) : (
-        'Initializeing...'
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100vh',
+          }}
+        >
+          Initializeing...
+        </div>
       )}
 
       {/* <footer>&copy; {new Date().getFullYear()} Old-boys</footer> */}
-    </Layout>
+    </div>
   );
 }
 
