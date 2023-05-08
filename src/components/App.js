@@ -6,6 +6,7 @@ import Home from '../routes/Home';
 import Auth from '../routes/Auth';
 import { useNavigate } from 'react-router-dom';
 import '../Fonts/Font.css';
+import { St_App, St_Init } from '../css/LayoutStyle';
 
 function App() {
   //console.log(authService.currentUser); // user | null
@@ -33,27 +34,7 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        // height: '100vh',
-        // width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundColor: '#30475e',
-      }}
-    >
-      {/* {init ? (
-        <div>
-          <Auth
-            isLoggedIn={isLoggedIn}
-            userObj={userObj}
-            refreshUser={refreshUser}
-          />
-        </div>
-      ) : (
-        'Initializeing...'
-      )} */}
-
+    <St_App>
       {init ? (
         <Router
           isLoggedIn={isLoggedIn}
@@ -61,21 +42,11 @@ function App() {
           refreshUser={refreshUser}
         />
       ) : (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '100vh',
-          }}
-        >
-          Initializeing...
-        </div>
+        <St_Init>Initializeing...</St_Init>
       )}
 
       {/* <footer>&copy; {new Date().getFullYear()} Old-boys</footer> */}
-    </div>
+    </St_App>
   );
 }
 
