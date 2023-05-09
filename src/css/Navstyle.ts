@@ -31,11 +31,7 @@ export const Nav = styled.div`
   }
   .LoLicon {
     display: flex;
-    color: #dddddd;
-    font-size: 25px;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
+    margin: auto
   }
 `;
 

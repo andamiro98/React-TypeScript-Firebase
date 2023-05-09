@@ -5,12 +5,12 @@ import { getStorage } from "firebase/storage";
 import 'firebase/database';
 
 interface FirebaseConfig {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
+  readonly apiKey: string;
+  readonly authDomain: string;
+  readonly projectId: string;
+  readonly storageBucket: string;
+  readonly messagingSenderId: string;
+  readonly appId: string;
 }
 
 
@@ -23,8 +23,11 @@ const firebaseConfig: FirebaseConfig = {
   appId: process.env.REACT_APP_APPID as string,
 };
 
+
 initializeApp(firebaseConfig);
 
+// Initialize Firebase Authentication and get a reference to the service
 export const authService = getAuth();
+
 export const dbService = getFirestore();
 export const storageService = getStorage();

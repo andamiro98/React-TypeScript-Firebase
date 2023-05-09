@@ -23,6 +23,8 @@ const Auth = () => {
     } else if (name === 'github') {
       provider = new GithubAuthProvider();
     }
+
+    // provider로 로그인
     const data = await signInWithPopup(authService, provider);
     console.log(data);
     navigate('/');

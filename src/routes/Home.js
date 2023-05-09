@@ -44,11 +44,11 @@ const Home = ({ userObj, isLoggedIn, refreshUser }) => {
 
   return (
     <Homelayout>
+      <Navigation userObj={userObj} />
       {isLoggedIn && (
-        <>
-          <Navigation userObj={userObj} />
+        <div>
           <Addchuweet userObj={userObj} />
-        </>
+        </div>
       )}
 
       <div>

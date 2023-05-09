@@ -1,12 +1,10 @@
 import Router from './Router';
 import React, { useEffect, useState } from 'react';
 import { authService } from '../fbase';
-import Layout from './Layout';
-import Home from '../routes/Home';
-import Auth from '../routes/Auth';
 import { useNavigate } from 'react-router-dom';
 import '../Fonts/Font.css';
 import { St_App, St_Init } from '../css/LayoutStyle';
+import Layout from './Layout';
 
 function App() {
   //console.log(authService.currentUser); // user | null
@@ -34,7 +32,7 @@ function App() {
   };
 
   return (
-    <St_App>
+    <Layout>
       {init ? (
         <Router
           isLoggedIn={isLoggedIn}
@@ -46,7 +44,7 @@ function App() {
       )}
 
       {/* <footer>&copy; {new Date().getFullYear()} Old-boys</footer> */}
-    </St_App>
+    </Layout>
   );
 }
 

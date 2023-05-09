@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 import Navigation from '../components/Navigation';
+import { Homelayout } from '../css/HomeStyle';
+
 // userObj : 로그인한 유저 정보 prop
 const Profile = ({ userObj, refreshUser }) => {
   const navigate = useNavigate();
@@ -48,7 +50,7 @@ const Profile = ({ userObj, refreshUser }) => {
   };
 
   return (
-    <div>
+    <Homelayout>
       <Navigation userObj={userObj} />
       <form onSubmit={onSubmit}>
         <input
@@ -60,7 +62,7 @@ const Profile = ({ userObj, refreshUser }) => {
         <input type="submit" value="Update Profile" />
       </form>
       <button onClick={onLogOutClick}>Logout</button>
-    </div>
+    </Homelayout>
   );
 };
 
