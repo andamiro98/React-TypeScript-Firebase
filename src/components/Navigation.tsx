@@ -4,7 +4,8 @@ import { NavContainer, Nav, Navtext } from '../css/Navstyle';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineQq } from 'react-icons/ai';
 import { ReactComponent as Iclol } from '../svg/LoL.svg';
-const Navigation = ({ userObj }) => {
+
+const Navigation = () => {
   const navigate = useNavigate();
 
   const navHome = () => {

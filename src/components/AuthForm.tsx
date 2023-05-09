@@ -13,17 +13,18 @@ import {
   Authform,
 } from '../css/AuthFormStyle';
 
+
 const AuthForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [newAccount, setNewAccount] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string>('');
 
   const toggleAccount = () => {
     setNewAccount((newAccount) => !newAccount);
   };
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
     } = event;
@@ -35,7 +36,7 @@ const AuthForm = () => {
     }
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       let data;
@@ -51,9 +52,12 @@ const AuthForm = () => {
         data = await signInWithEmailAndPassword(authService, email, password);
       }
       console.log(data);
-    } catch (error) {
-      setError(error.message);
-    }
+    } catch (error: unknown) {
+      if(error instanceof Error){
+        setError(error.message);
+      }
+      }
+      
   };
 
   return (
