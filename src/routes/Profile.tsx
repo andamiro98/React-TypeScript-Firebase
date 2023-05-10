@@ -10,11 +10,13 @@ import { Homelayout } from '../css/HomeStyle';
 interface ProfileProps{
   userObj: User | null;
 }
+
 // userObj : 로그인한 유저 정보 prop
 const Profile:React.FC<ProfileProps> = ({ userObj }) => {
   const navigate = useNavigate();
   const [newDisplayname, setNewDisplayName] = useState<string>(userObj?.displayName || "");
-
+  
+// 로그아웃
   const onLogOutClick = () => {
     authService.signOut();
     navigate('/');

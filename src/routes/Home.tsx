@@ -2,69 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { dbService, storageService } from '../fbase';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 // import Chuweet from '../components/Chuweet';
-// import Addchuweet from '../components/AddChuweet';
+import Addchuweet from '../components/AddChuweet';
 import Navigation from '../components/Navigation';
 import { Homelayout } from '../css/HomeStyle';
 import { User } from 'firebase/auth';
 
 interface HomeProps{
+  isLoggedIn: boolean;
   userObj: User | null;
 }
 //Props
 // userObj : App.js => Router.js => Home.js
-const Home:React.FC<HomeProps> = ({userObj}) => {
+const Home:React.FC<HomeProps> = ({isLoggedIn, userObj}) => {
   // console.log(userObj);
 
   const [chuweets, setChuweets] = useState([]);
 
-  // const getChuweets = async () => {
-  //   const q = query(collection(dbService, 'chuweets'));
-  //   const querySnapshot = await getDocs(q);
 
-  //   querySnapshot.forEach((doc) => {
-  //     const ChuweetObj = {
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     };
-  //     setChuweets((prev) => [ChuweetObj, ...prev]);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   // getChuweets();
-  //   const q = query(
-  //     collection(dbService, 'chuweets'),
-  //     orderBy('createdAt', 'desc')
-  //   );
-  //   onSnapshot(q, (snapshot) => {
-  //     const chuweetArr = snapshot.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       postid: doc.id,
-  //     }));
-  //     setChuweets(chuweetArr);
-  //     console.log(chuweetArr);
-  //   });
-  // }, []);
 
   return (
     <Homelayout>
       <Navigation />
-      {/* {isLoggedIn && (
+      {isLoggedIn && (
         <div>
           <Addchuweet userObj={userObj} />
         </div>
       )}
 
-      <div>
-        {chuweets.map((chuweet) => (
-          <Chuweet
-            key={chuweet.postid}
-            userObj={userObj}
-            chuweetObj={chuweet}
-            isOwner={chuweet.creatorID === userObj.uid}
-          />
-        ))}
-      </div> */}
       Home
     </Homelayout>
   );

@@ -24,7 +24,7 @@ interface RouterProps {
     <>
       <Routes>
         {isLoggedIn ? (
-          <Route path="/" element={<Home userObj={userObj} />} />
+          <Route path="/" element={<Home userObj={userObj} isLoggedIn={isLoggedIn} />} />
         ) : (
           <Route path="/"  element={<Auth/>} />
         )}

@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import { authService } from '../fbase';
 import { AiOutlineQq } from 'react-icons/ai';
 import {
