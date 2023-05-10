@@ -1,31 +1,16 @@
 import React, { useState } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { authService } from '../fbase';
-import { AiOutlineQq } from 'react-icons/ai';
-import {
-  AuthInput,
-  AuthLayout,
-  AuthSubmit,
-  AuthSwitch,
-  Authform,
-} from '../css/AuthFormStyle';
+import { AuthInput } from '../css/AuthFormStyle';
 import { useNavigate } from 'react-router-dom';
+import { AccLayout, Accform, AccSubmit } from '../css/NewAccStyle';
 
-
-const AuthForm = () => {
+const NewAccount = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
   const navigate=useNavigate()
-
-
-  const toggleAccount = () => {
-    navigate("/newaccount")
-  };
-
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -39,26 +24,33 @@ const AuthForm = () => {
 
   };
 
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    // ^로그인 
+    // ^회원가입
     event.preventDefault();
     try {
-      let data = await signInWithEmailAndPassword(authService, email, password);
-      console.log(data);
-    } catch (error: unknown) {
-      if(error instanceof Error){
-        setError(error.message);
-        console.log(error)
+      let data = await createUserWithEmailAndPassword(
+          authService,
+          email,
+          password
+        );
+        console.log(data);
+      } catch (error: unknown) {
+        if(error instanceof Error){
+          setError(error.message);
+          console.log(error)
       }
       }
-      
+      alert("회원가입이 완료")
+      navigate("/")
   };
 
-  return (
-    <AuthLayout>
-      <AiOutlineQq className="Usericon" />
-      <a>Old Boys</a>
-      <Authform onSubmit={onSubmit}>
+  return(
+    <div>
+   
+    <AccLayout>
+    <div>회원가입</div>
+      <Accform onSubmit={onSubmit}>
         <AuthInput
           name="email"
           type="email"
@@ -75,14 +67,12 @@ const AuthForm = () => {
           onChange={onChange}
           required
         />
-        <AuthSubmit type="submit" value={'로그인'} />
-      </Authform>
+        <AccSubmit className='AccSubmit' type="submit" value={'가입하기'} />
+      </Accform>
 
-      <AuthSwitch onClick={toggleAccount}>
-        {'회원가입'}
-      </AuthSwitch>
-    </AuthLayout>
-  );
-};
+    </AccLayout>
+    </div>
+  )
+}
 
-export default AuthForm;
+export default NewAccount;

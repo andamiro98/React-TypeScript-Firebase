@@ -17,20 +17,26 @@ const Auth = () => {
     // target과 currentTarget의 차이점
     console.log(targetname);
     
-    let provider;
+    let provider:GoogleAuthProvider | GithubAuthProvider | null = null;
+    // TypeScript 컴파일러가 null 값을 타입으로 강제하는 경우에 사용
+    // null이 가능하다고 명시적으로 알려줌
     if (targetname === 'google') {
       provider = new GoogleAuthProvider();
     } else if (targetname === 'github') {
       provider = new GithubAuthProvider();
     }
 
+  // provider로 로그인
+  if (provider !== null) {
+    const data = await signInWithPopup(authService, provider);
+    console.log(data);
+  }
+
   }
   
-     // provider로 로그인
-  //   const data = await signInWithPopup(authService, provider);
-  //   console.log(data);
-  //   navigate('/');
-  // };
+
+
+
 
 
   return (
