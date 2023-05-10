@@ -40,7 +40,7 @@ function App() {
       {init ? (
         <Router
           isLoggedIn={isLoggedIn}
-          // userObj={userObj}
+          userObj={userObj}
           // refreshUser={refreshUser}
         />
       ) : (

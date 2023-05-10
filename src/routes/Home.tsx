@@ -5,10 +5,14 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 // import Addchuweet from '../components/AddChuweet';
 import Navigation from '../components/Navigation';
 import { Homelayout } from '../css/HomeStyle';
+import { User } from 'firebase/auth';
 
+interface HomeProps{
+  userObj: User | null;
+}
 //Props
 // userObj : App.js => Router.js => Home.js
-const Home = ({ }) => {
+const Home:React.FC<HomeProps> = ({userObj}) => {
   // console.log(userObj);
 
   const [chuweets, setChuweets] = useState([]);
@@ -44,8 +48,8 @@ const Home = ({ }) => {
 
   return (
     <Homelayout>
-      {/* <Navigation userObj={userObj} />
-      {isLoggedIn && (
+      <Navigation />
+      {/* {isLoggedIn && (
         <div>
           <Addchuweet userObj={userObj} />
         </div>
