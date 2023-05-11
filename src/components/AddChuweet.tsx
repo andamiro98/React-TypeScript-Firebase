@@ -38,7 +38,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       const reader = new FileReader();
       reader.onloadend = (finishedEvent: ProgressEvent<FileReader>) => {
         if(finishedEvent.target){
-          // finishedEvent.currentTarget이 null인 이유는 onloadend 이벤트 핸들러가 실행될 때, 이벤트 타겟이 존재하지 않는 경우이다.
+          // finishedEvent.currentTarget이 null인 이유는 onloadend 이벤트 핸들러가 실행될 때, 이벤트 타겟이 존재하지 않는 경우때문.
           console.log(finishedEvent);
           setAttachment(finishedEvent.target.result as string);
         }
@@ -53,12 +53,6 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       fileInput.current.value = '';
     }
   };
-
-  // const onCleraAttachment = () => {
-  //   setAttachment('');
-  //   fileInput.current.value = '';
-  //   setAttachment('');
-  // };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if(userObj){
@@ -86,7 +80,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
         text: post,
         createdAt: serverTimestamp(),
         creatorID: userObj.uid,
-        // attachmentUrl,
+        attachmentUrl,
       };
   
       // NoSQL database는 collection과 document을 가진다.
