@@ -73,7 +73,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       const chuweetObj = {
         text: post,
         createdAt: serverTimestamp(),
-        // creatorID: userObj.uid,
+        creatorID: userObj.uid,
         // attachmentUrl,
       };
   
