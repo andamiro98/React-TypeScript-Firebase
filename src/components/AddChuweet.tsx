@@ -26,7 +26,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
   const fileInput = useRef<HTMLInputElement>(null);
 
   const [post, setPost] = useState('');
-  const [attachment, setAttachment] = useState('');
+  const [attachment, setAttachment] = useState(''); // readAsDataURL된 
 
   const onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPost(event.target.value);
@@ -35,18 +35,24 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if(file){
-      const reader = new FileReader();
+      const reader = new FileReader(); //FileReader API 비동기적으로 파일의 내용을 읽어들이는데 사용
       reader.onloadend = (finishedEvent: ProgressEvent<FileReader>) => {
+        //   ^파일읽기가 끝나면 실행되는 이벤트
+        // 파일을 인코딩하는 작업은 readAsDataURL 메소드 내부에서 수행되고 파일의 내용을 읽어들였다면 
+        // readAsDataURL에서 인코딩된 스티링 데이터가 result에 담겨 setAttachment()를 통해 상태 변수에 저장한다.
         if(finishedEvent.target){
           // finishedEvent.currentTarget이 null인 이유는 onloadend 이벤트 핸들러가 실행될 때, 이벤트 타겟이 존재하지 않는 경우때문.
-          console.log(finishedEvent);
           setAttachment(finishedEvent.target.result as string);
         }
-      
       };
       reader.readAsDataURL(file);
+      //     ^base64 인코딩 된 스트링 데이터가 비동기적으로 result 속성(attribute)에 담아지게 됩니다.
     }
+    // readAsDataURL() 함수는 파일을 비동기적으로 읽기 때문에 readAsDataURL()함수가 실행되고 있는 동안에는 다른 코드들이 실행될 수 있다. 
+    // 만약 readAsDataURL() 함수가 실행되고 있는 중에 이미 setAttachment() 함수가 실행된다면, 
+    // 이전 파일의 데이터가 새로운 파일의 데이터로 덮어씌워질 가능성이 있다.
   };
+
   const onClearAttachment = () => {
     setAttachment('');
     if (fileInput.current) {
@@ -87,7 +93,9 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       // collection는 폴더 document는 문서
       //chuweetObj 형태로 새로운 document 생성하여 chuweets 콜렉션에 넣기
       await addDoc(collection(dbService, 'chuweets'), chuweetObj);
-      // fileInput.current.value = '';
+      if (fileInput.current) {
+        fileInput.current.value = '';
+      }
       setPost('');
       setAttachment('');
 

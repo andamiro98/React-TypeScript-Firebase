@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { dbService, storageService } from '../fbase';
-import { collection, query, orderBy, onSnapshot, getDocs, DocumentData  } from 'firebase/firestore';
+import { dbService } from '../fbase';
+import { collection, query, orderBy, onSnapshot, DocumentData  } from 'firebase/firestore';
 import Chuweet from '../components/Chuweet';
 import Addchuweet from '../components/AddChuweet';
 import Navigation from '../components/Navigation';
