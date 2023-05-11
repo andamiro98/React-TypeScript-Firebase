@@ -60,7 +60,8 @@ const Chuweet:React.FC<ChuweetProps> = ({ userObj, chuweetObj }) => {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(chuweetObj.text, updatePost);
+    // console.log(chuweetObj.text, updatePost);
+    // 업데이트
     await updateDoc(ChuweetTextRef, {
       text: updatePost,
     });
@@ -74,6 +75,7 @@ const Chuweet:React.FC<ChuweetProps> = ({ userObj, chuweetObj }) => {
   return (
     <PostLayout>
       {update ? (
+        // 수정아이콘 클릭시 input생성
         <div>
           <form onSubmit={onSubmit}>
             <input

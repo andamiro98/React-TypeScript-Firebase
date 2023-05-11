@@ -23,7 +23,7 @@ interface AddchuweetProps {
 }
 
 const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
-  const fileInput = useRef();
+  const fileInput = useRef<HTMLInputElement>(null);
 
   const [post, setPost] = useState('');
   const [attachment, setAttachment] = useState('');
@@ -32,18 +32,30 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
     setPost(event.target.value);
   };
 
-  // const onFileChange = (e) => {
-  //   console.log(e.target.files[0]);
-  //   const reader = new FileReader();
-  //   reader.onloadend = (finishedEvent) => {
-  //     console.log(finishedEvent);
-  //     setAttachment(finishedEvent.currentTarget.result);
-  //   };
-  //   reader.readAsDataURL(e.target.files[0]);
-  // };
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onloadend = (finishedEvent: ProgressEvent<FileReader>) => {
+        if(finishedEvent.target){
+          // finishedEvent.currentTarget이 null인 이유는 onloadend 이벤트 핸들러가 실행될 때, 이벤트 타겟이 존재하지 않는 경우이다.
+          console.log(finishedEvent);
+          setAttachment(finishedEvent.target.result as string);
+        }
+      
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const onClearAttachment = () => {
+    setAttachment('');
+    if (fileInput.current) {
+      fileInput.current.value = '';
+    }
+  };
 
   // const onCleraAttachment = () => {
-  //   setAttachment(null);
+  //   setAttachment('');
   //   fileInput.current.value = '';
   //   setAttachment('');
   // };
@@ -55,21 +67,21 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
         return;
       }
       event.preventDefault();
-      // let attachmentUrl = '';
-      // if (attachment !== '') {
-      //   //파일 경로 참조 만들기
-      //   const attachmentRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
-      //   //storage 참조 경로로 파일 업로드 하기
-      //   const response = await uploadString(
-      //     attachmentRef,
-      //     attachment,
-      //     'data_url'
-      //   );
-      //   console.log(response);
-      //   //storage 참조 경로에 있는 파일의 URL을 다운로드해서 attachmentUrl 변수에 넣어서 업데이트
-      //   attachmentUrl = await getDownloadURL(response.ref);
-      //   console.log(attachmentUrl);
-      // }
+      let attachmentUrl = '';
+      if (attachment !== '') {
+        //파일 경로 참조 만들기
+        const attachmentRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+        //storage 참조 경로로 파일 업로드 하기
+        const response = await uploadString(
+          attachmentRef,
+          attachment,
+          'data_url'
+        );
+        console.log(response);
+        //storage 참조 경로에 있는 파일의 URL을 다운로드해서 attachmentUrl 변수에 넣어서 업데이트
+        attachmentUrl = await getDownloadURL(response.ref);
+        console.log(attachmentUrl);
+      }
       const chuweetObj = {
         text: post,
         createdAt: serverTimestamp(),
@@ -83,7 +95,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       await addDoc(collection(dbService, 'chuweets'), chuweetObj);
       // fileInput.current.value = '';
       setPost('');
-      // setAttachment('');
+      setAttachment('');
 
     }
   };
@@ -99,30 +111,30 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
           maxLength={200}
         />
       </InputContainer>
-{/* 
-      <FileLabel for="input-file">
+
+      <FileLabel htmlFor="input-file">
         Add Photos
         <BiImageAdd className="ImgAddIcon" />
-      </FileLabel> */}
+      </FileLabel>
 
-      {/* <FileInput
+      <FileInput
         id="input-file"
         type="file"
         accept="image/*"
         onChange={onFileChange}
         ref={fileInput}
       />
-      {attachment && <ImgFile src={attachment} />} */}
+      {attachment && <ImgFile src={attachment} />}
 
       <Bottomdiv>
         <SubmitInput type="submit" value="Share" />
       </Bottomdiv>
 
-      {/* {attachment && (
-        <ClearBtn onClick={onCleraAttachment}>
+      {attachment && (
+        <ClearBtn onClick={onClearAttachment}>
           <AiFillDelete className="CancelICon" />
         </ClearBtn>
-      )} */}
+      )}
     </PostForm>
   );
 };
