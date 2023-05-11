@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
 import { dbService, storageService } from '../fbase';
-import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { doc, deleteDoc, updateDoc,DocumentData } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
 import { BiPencil } from 'react-icons/bi';
-
+import { User } from 'firebase/auth';
 import {
   PostBox,
   PostLayout,
-  PostTime,
   ProfileBox,
   MenuBox,
   BodyTopBox,
 } from '../css/ChuweetStyle';
 
-// interface ChuweetObj {
-//   createdAt: {
-//     seconds: number;
-//     nanoseconds: number;
-//   };
-//   creatorID: string;
-//   postid: string;
-//   text: string;
-// }
+
+interface ChuweetProps{
+  userObj: User | null;
+  chuweetObj: DocumentData;
+}
 
 // Props
 // chuweetObj : <Home> of chuweets
 // isOwner : <Home> of chuweets.map
-const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
+const Chuweet:React.FC<ChuweetProps> = ({ userObj, chuweetObj }) => {
   const [update, setUpdate] = useState(false);
   const [updatePost, setUpdatePost] = useState(chuweetObj.text);
   const [menu, setMenu] = useState(false);
@@ -41,9 +36,9 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-  const second = date.getSeconds();
+  // const hour = date.getHours();
+  // const minute = date.getMinutes();
+  // const second = date.getSeconds();
 
   const onDeleteClick = async () => {
     const reCheck = window.confirm('삭제하시겠습니까?');
@@ -59,12 +54,12 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
     setUpdate((prev) => !prev);
   };
 
-  const onChange = (e) => {
-    setUpdatePost(e.target.value);
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdatePost(event.target.value);
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log(chuweetObj.text, updatePost);
     await updateDoc(ChuweetTextRef, {
       text: updatePost,
@@ -104,10 +99,10 @@ const Chuweet = ({ chuweetObj, isOwner, userObj }) => {
           <div className="card-body">
             <BodyTopBox>
               <ProfileBox>
-                <img src={userObj.photoURL} />
+                <img src={userObj && userObj.photoURL || ""} />
                 <div>
                   <div className="card-title">
-                    <div>{userObj.displayName}</div>
+                    <div>{userObj && userObj.displayName}</div>
                     <div>{`${year}년 ${month}월 ${day}일`}</div>
                   </div>
                 </div>

@@ -86,7 +86,6 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       // setAttachment('');
 
     }
-   
   };
 
   return (

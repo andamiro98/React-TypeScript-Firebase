@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { dbService, storageService } from '../fbase';
 import { collection, query, orderBy, onSnapshot, getDocs, DocumentData  } from 'firebase/firestore';
-// import Chuweet from '../components/Chuweet';
+import Chuweet from '../components/Chuweet';
 import Addchuweet from '../components/AddChuweet';
 import Navigation from '../components/Navigation';
 import { Homelayout } from '../css/HomeStyle';
 import { User } from 'firebase/auth';
+
 
 interface HomeProps{
   isLoggedIn: boolean;
@@ -57,10 +58,9 @@ const Home:React.FC<HomeProps> = ({isLoggedIn, userObj}) => {
       )}
 
       <div>
-        {chuweets.map(chuweet =>
-        <div key={chuweet.id}>
-          <h4>{chuweet.text}</h4>
-        </div>)}
+        {chuweets.map((chuweet) => (
+          <Chuweet key={chuweet.postid} chuweetObj={chuweet} userObj={userObj}/>
+        ))}
       </div>
     </Homelayout>
   );
