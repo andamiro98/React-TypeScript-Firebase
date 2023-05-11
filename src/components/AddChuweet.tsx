@@ -54,10 +54,10 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
   };
 
   const onClearAttachment = () => {
-    setAttachment('');
     if (fileInput.current) {
       fileInput.current.value = '';
     }
+    setAttachment('');
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,20 +67,19 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
         return;
       }
       event.preventDefault();
+
       let attachmentUrl = '';
       if (attachment !== '') {
-        //파일 경로 참조 만들기
         const attachmentRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
-        //storage 참조 경로로 파일 업로드 하기
+        //                    ^firebas storageService 파일 경로 참조 만들기 (유저아이디로 파일을 구분)
         const response = await uploadString(
+          // ^storage 참조 경로로 파일 업로드 하기
           attachmentRef,
           attachment,
-          'data_url'
+          'data_url' // format
         );
-        console.log(response);
-        //storage 참조 경로에 있는 파일의 URL을 다운로드해서 attachmentUrl 변수에 넣어서 업데이트
         attachmentUrl = await getDownloadURL(response.ref);
-        console.log(attachmentUrl);
+        //                    ^storage 참조 경로에 있는 파일의 URL 다운로드
       }
       const chuweetObj = {
         text: post,
@@ -93,6 +92,7 @@ const Addchuweet:React.FC<AddchuweetProps> = ({ userObj }) => {
       // collection는 폴더 document는 문서
       //chuweetObj 형태로 새로운 document 생성하여 chuweets 콜렉션에 넣기
       await addDoc(collection(dbService, 'chuweets'), chuweetObj);
+      
       if (fileInput.current) {
         fileInput.current.value = '';
       }
