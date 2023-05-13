@@ -31,8 +31,13 @@ export const Nav = styled.div`
   }
   .LoLicon {
     display: flex;
-    margin: auto
+    margin: auto;
   }
+  .Loadicon{
+    display: flex;
+    margin: auto;
+  }
+  
 `;
 
 export const Navtext = styled.div`
