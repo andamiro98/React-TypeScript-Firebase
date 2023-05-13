@@ -52,16 +52,13 @@ const Home:React.FC<HomeProps> = ({isLoggedIn, userObj}) => {
     <Homelayout>
       <Navigation />
       {isLoggedIn && (
-        <div>
+        <>
           <Addchuweet userObj={userObj} />
-        </div>
+        </>
       )}
-
-      <div>
         {chuweets.map((chuweet) => (
           <Chuweet key={chuweet.postid} chuweetObj={chuweet} userObj={userObj}/>
         ))}
-      </div>
     </Homelayout>
   );
 };

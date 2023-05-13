@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { updateProfile, User } from 'firebase/auth';
 import Navigation from '../components/Navigation';
-import { Homelayout } from '../css/HomeStyle';
+import { ProfileLayout,ProfileForm, NameInput, SubmitInput, OutBtn } from '../css/ProfileStyle';
+
 
 
 interface ProfileProps{
@@ -60,20 +61,19 @@ const Profile:React.FC<ProfileProps> = ({ userObj }) => {
   };
 
   return (
-    <Homelayout>
+    <ProfileLayout>
       <Navigation/>
-      <form onSubmit={onSubmit}>
-        <input
+      <ProfileForm onSubmit={onSubmit}>
+        <NameInput
           onChange={onChange}
           type="text"
-          placeholder="Display name"
+          placeholder="Your name"
           value={newDisplayname}
         />
-        <input type="submit" value="Update Profile" />
-      </form>
-      <button onClick={onLogOutClick}>Logout</button> 
-      Profile
-    </Homelayout>
+        <SubmitInput type="submit" value="수정하기" />
+      </ProfileForm>
+      <OutBtn onClick={onLogOutClick}>Logout</OutBtn> 
+    </ProfileLayout>
   );
 };
 

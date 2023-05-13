@@ -104,13 +104,10 @@ export const ClearBtn = styled.div`
   color: #dddddd;
   border: none;
   cursor: pointer;
-
   .CancelICon {
     font-size: 30px;
     font-weight: bold;
-
     :hover {
-      /* font-size: 25px; */
       color: #f05454;
     }
   }
