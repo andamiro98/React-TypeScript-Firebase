@@ -5,6 +5,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineQq } from 'react-icons/ai';
 import { ReactComponent as Iclol } from '../svg/LoL.svg';
 import { ReactComponent as IcLoad } from '../svg/Loadmap.svg';
+import { ReactComponent as IcTT } from '../svg/TT.svg';
 const Navigation = () => {
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const Navigation = () => {
   return (
     <NavContainer>
       <Nav onClick={navHome}>
-        <AiOutlineQq className="Usericon" />
+        <IcTT className="TTicon" />
         <Navtext>Home</Navtext>
       </Nav>
 

@@ -8,7 +8,7 @@ export const NavContainer = styled.div`
   .Usericon {
     display: flex;
     color: #dddddd;
-    font-size: 50px;
+    font-size: 49px;
     margin: auto;
   }
   width: 100%;
@@ -34,6 +34,10 @@ export const Nav = styled.div`
     margin: auto;
   }
   .Loadicon{
+    display: flex;
+    margin: auto;
+  }
+  .TTicon{
     display: flex;
     margin: auto;
   }
