@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { authService } from '../fbase';
-import { AiOutlineQq } from 'react-icons/ai';
 import {
   AuthInput,
   AuthLayout,
@@ -10,7 +9,7 @@ import {
   Authform,
 } from '../css/AuthFormStyle';
 import { useNavigate } from 'react-router-dom';
-
+import { ReactComponent as IcTT } from '../svg/TT.svg';
 
 const AuthForm = () => {
   const [email, setEmail] = useState('');
@@ -53,7 +52,7 @@ const AuthForm = () => {
 
   return (
     <AuthLayout>
-      <AiOutlineQq className="Usericon" />
+      <IcTT className="Usericon" />
       <a>Old Boys</a>
       <Authform onSubmit={onSubmit}>
         <AuthInput

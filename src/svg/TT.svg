@@ -3,11 +3,11 @@
  preserveAspectRatio="xMidYMid meet">
 <style>
   .TT{
-    fill: #DDDDDD;
+    fill: black;
 
   }
   div svg:hover .TT{
-      fill: #F05454;
+      fill: white;
   }
   
   

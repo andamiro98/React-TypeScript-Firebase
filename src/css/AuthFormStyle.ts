@@ -7,6 +7,7 @@ export const AuthLayout = styled.div`
   width: 100%;
   align-items: center;
   margin: auto;
+  margin-top: 230px;
   margin-bottom: 30px;
 
   input {
@@ -21,15 +22,7 @@ export const AuthLayout = styled.div`
       opacity: 0.7;
     }
   }
-  .Usericon {
-    display: flex;
-    color: #dddddd;
-    font-size: 80px;
-    margin-bottom: 0px;
-    :hover {
-      color: #f05454;
-    }
-  }
+
   a {
     font-family: 'googleSingleDay';
     font-size: 30px;

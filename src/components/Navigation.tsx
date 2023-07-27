@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { NavContainer, Nav, Navtext } from '../css/Navstyle';
 import { FaUserCircle } from 'react-icons/fa';
-import { AiOutlineQq } from 'react-icons/ai';
 import { ReactComponent as Iclol } from '../svg/LoL.svg';
 import { ReactComponent as IcLoad } from '../svg/Loadmap.svg';
 import { ReactComponent as IcTT } from '../svg/TT.svg';
